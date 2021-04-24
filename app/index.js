@@ -31,6 +31,7 @@ class App extends React.Component {
         data: [...fetchedData],
         filtered: [...fetchedData],
         loading: false,
+        searchText: "",
       });
     }.bind(this)());
   }

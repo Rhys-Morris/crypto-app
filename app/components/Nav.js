@@ -9,7 +9,7 @@ export default class Nav extends React.Component {
     const { handleChange, searchText } = this.props;
     return (
       <nav className="nav">
-        <h1 className="nav__logo">CryptoTrack</h1>
+        <h1 className="nav__logo">Coin Medusa</h1>
         <div className="nav__search-box">
           <label htmlFor="search" className="nav__search-label">
             Search
