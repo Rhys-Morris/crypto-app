@@ -12,12 +12,18 @@ html {
   font-weight: 400;
   font-family: Roboto, sans-serif;
 }
+@media only screen and (max-width: 900px) {
+  html {
+    font-size: 56.25%;
+  }
+}
 
 #root {
   display: flex;
   width: 100vw;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
+  min-height: 100vh;
 }
 
 .container {
@@ -26,6 +32,7 @@ html {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  min-height: 80vh;
 }
 
 .card-list {
@@ -50,6 +57,21 @@ html {
   margin: 2rem;
   position: relative;
   box-shadow: 5px 5px 5px 5px rgba(0, 0, 0, 0.2);
+}
+@media only screen and (max-width: 700px) {
+  .card {
+    width: 35rem;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .card {
+    width: 27.5rem;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .card {
+    width: 25rem;
+  }
 }
 .card__header {
   display: flex;
@@ -98,6 +120,18 @@ html {
   padding: 1rem 5rem;
   width: 100vw;
 }
+@media only screen and (max-width: 700px) {
+  .nav {
+    padding: 1rem 3rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .nav {
+    flex-direction: column;
+    height: 12rem;
+    justify-content: space-around;
+  }
+}
 .nav__logo {
   font-size: 3rem;
   text-transform: uppercase;
@@ -114,11 +148,66 @@ html {
   width: 50rem;
   font-size: 1.6rem;
 }
+@media only screen and (max-width: 900px) {
+  .nav__search {
+    width: 40rem;
+  }
+}
+@media only screen and (max-width: 700px) {
+  .nav__search {
+    width: 35rem;
+  }
+}
+@media only screen and (max-width: 600px) {
+  .nav__search {
+    text-align: center;
+  }
+}
+@media only screen and (max-width: 400px) {
+  .nav__search {
+    width: 27.5rem;
+  }
+}
+@media only screen and (max-width: 300px) {
+  .nav__search {
+    width: 25rem;
+  }
+}
 .nav__search:focus {
   border: 2px solid #fd9002;
 }
 .nav__search::placeholder {
   color: #444;
+}
+
+.empty {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 3rem;
+}
+@media only screen and (max-width: 600px) {
+  .empty {
+    text-align: center;
+    width: 80%;
+  }
+}
+
+.loader {
+  border: 16px solid #f3f3f3;
+  border-top: 16px solid #333;
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /*# sourceMappingURL=index.css.map */

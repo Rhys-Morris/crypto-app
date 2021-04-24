@@ -21,6 +21,18 @@
   position: relative;
   box-shadow: 5px 5px 5px 5px rgba(#000, .2);
 
+  @media only screen and (max-width: $breakpoint2) {
+    width: 35rem;
+  }
+
+  @media only screen and (max-width: $breakpoint4) {
+    width: 27.5rem;
+  }
+
+  @media only screen and (max-width: $breakpoint5) {
+    width: 25rem;
+  }
+
   &__header {
     display: flex;
     justify-content: center;
@@ -75,14 +87,21 @@
   padding: 1rem 5rem;
   width: 100vw;
 
+  @media only screen and (max-width: $breakpoint2) {
+    padding: 1rem 3rem;
+  }
+
+  @media only screen and (max-width: $breakpoint3) {
+    flex-direction: column;
+    height: 12rem;
+    justify-content: space-around;
+  }
+
+
   &__logo {
     font-size: 3rem;
     text-transform: uppercase;
     font-weight: 300;
-  }
-
-  &__search-box {
-
   }
 
   &__search-label {
@@ -97,6 +116,26 @@
     width: 50rem;
     font-size: 1.6rem;
 
+    @media only screen and (max-width: $breakpoint1) {
+      width: 40rem;
+    }
+
+    @media only screen and (max-width: $breakpoint2) {
+      width: 35rem;
+    }
+
+    @media only screen and (max-width: $breakpoint3) {
+      text-align: center;
+    }
+
+    @media only screen and (max-width: $breakpoint4) {
+      width: 27.5rem;
+    }
+
+    @media only screen and (max-width: $breakpoint5) {
+      width: 25rem;
+    }
+
     &:focus {
       border: 2px solid rgb(253, 144, 2);
     }
@@ -104,5 +143,34 @@
     &::placeholder {
       color: #444;
     }
+  }
+}
+
+.empty {
+  text-transform: uppercase;
+  font-weight: 300;
+  font-size: 3rem;
+
+  @media only screen and (max-width: $breakpoint3) {
+    text-align: center;
+    width: 80%;
+  }
+}
+
+.loader {
+  border: 16px solid #f3f3f3; 
+  border-top: 16px solid #333; 
+  border-radius: 50%;
+  width: 120px;
+  height: 120px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { 
+    transform: rotate(0deg); 
+  }
+  100% { 
+    transform: rotate(360deg); 
   }
 }

@@ -3,7 +3,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import Card from "./components/Card.js";
 import Nav from "./components/Nav.js";
-import { fetchData } from "./utils/api.js";
+import Loading from "./components/Loading.js";
+import { fetchData, delay } from "./utils/api.js";
 import { filterCards } from "./utils/helper.js";
 
 class App extends React.Component {
@@ -14,6 +15,7 @@ class App extends React.Component {
       data: [],
       filtered: [],
       searchText: "",
+      loading: true,
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -24,9 +26,11 @@ class App extends React.Component {
       const fetchedData = await fetchData(
         "https://api.coingecko.com/api/v3/coins/markets?vs_currency=aud&order=market_cap_desc&page=1"
       );
+      await delay(2000);
       this.setState({
         data: [...fetchedData],
         filtered: [...fetchedData],
+        loading: false,
       });
     }.bind(this)());
   }
@@ -42,22 +46,39 @@ class App extends React.Component {
   }
 
   render() {
-    const { data, searchText, filtered } = this.state;
+    const { data, searchText, filtered, loading } = this.state;
     console.log(data);
 
+    if (loading)
+      return (
+        <React.Fragment>
+          <Nav handleChange={this.handleChange} searchText={searchText} />
+          <div className="container">
+            <Loading />
+          </div>
+        </React.Fragment>
+      );
+
     return (
-      <div className="container">
+      <React.Fragment>
         <Nav handleChange={this.handleChange} searchText={searchText} />
-        <ul className="card-list">
-          {filtered.map((crypto) => {
-            return (
-              <li key={crypto.symbol}>
-                <Card data={crypto} />
-              </li>
-            );
-          })}
-        </ul>
-      </div>
+        <div className="container">
+          {filtered.length > 0 && (
+            <ul className="card-list">
+              {filtered.map((crypto) => {
+                return (
+                  <li key={crypto.symbol}>
+                    <Card data={crypto} />
+                  </li>
+                );
+              })}
+            </ul>
+          )}
+          {filtered.length === 0 && !loading && (
+            <p class="empty">No results for that search query</p>
+          )}
+        </div>
+      </React.Fragment>
     );
   }
 }
