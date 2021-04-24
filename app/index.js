@@ -2,7 +2,9 @@ import "./index.css";
 import React from "react";
 import ReactDOM from "react-dom";
 import Card from "./components/Card.js";
+import Nav from "./components/Nav.js";
 import { fetchData } from "./utils/api.js";
+import { filterCards } from "./utils/helper.js";
 
 class App extends React.Component {
   constructor(props) {
@@ -10,7 +12,11 @@ class App extends React.Component {
 
     this.state = {
       data: [],
+      filtered: [],
+      searchText: "",
     };
+
+    this.handleChange = this.handleChange.bind(this);
   }
 
   componentDidMount() {
@@ -20,24 +26,33 @@ class App extends React.Component {
       );
       this.setState({
         data: [...fetchedData],
+        filtered: [...fetchedData],
       });
     }.bind(this)());
   }
 
-  render() {
+  handleChange(value) {
     const { data } = this.state;
+    const filtered = filterCards(data, value);
+
+    this.setState({
+      searchText: value,
+      filtered: [...filtered],
+    });
+  }
+
+  render() {
+    const { data, searchText, filtered } = this.state;
+    console.log(data);
 
     return (
-      <div>
+      <div className="container">
+        <Nav handleChange={this.handleChange} searchText={searchText} />
         <ul className="card-list">
-          {data.map((crypto) => {
+          {filtered.map((crypto) => {
             return (
               <li key={crypto.symbol}>
-                <Card
-                  name={crypto.name}
-                  image={crypto.image}
-                  currentPrice={crypto.current_price}
-                />
+                <Card data={crypto} />
               </li>
             );
           })}
