@@ -1,0 +1,35 @@
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+}
+
+.card {
+  width: 30rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  border-radius: 0.5rem;
+  border: 2px solid black;
+  margin: 2rem;
+
+  &__header {
+    font-weight: 300;
+    text-transform: uppercase;
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  &__image {
+    width: 35%;
+    margin-bottom: 1rem;
+  }
+
+  &__price {
+    font-size: 1.6rem;
+  }
+}

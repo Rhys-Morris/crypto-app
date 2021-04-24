@@ -9,9 +9,9 @@ export default class Card extends React.Component {
     const { name, image, currentPrice } = this.props;
     return (
       <div className="card">
-        <h2>{name}</h2>
-        <img src={image} size={100} />
-        <p>{currentPrice}</p>
+        <h3 className="card__header">{name}</h3>
+        <img src={image} className="card__image" />
+        <p className="card__price">{`Current Price: $${currentPrice}`}</p>
       </div>
     );
   }
